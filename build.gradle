@@ -1,0 +1,49 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.5'
+	id 'io.spring.dependency-management' version '1.1.3'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+	// https://mvnrepository.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api
+	implementation group: 'jakarta.ws.rs', name: 'jakarta.ws.rs-api', version: '3.1.0'
+	// https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-secrets
+	implementation group: 'com.azure', name: 'azure-security-keyvault-secrets', version: '4.7.1'
+
+	// https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.14'
+	testImplementation 'junit:junit:4.13.1'
+
+	// https://mvnrepository.com/artifact/io.opentelemetry/opentelemetry-api
+	implementation group: 'io.opentelemetry', name: 'opentelemetry-api', version: '1.34.1'
+	implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:2.0.0-alpha"))
+	implementation(platform("io.opentelemetry:opentelemetry-bom:1.34.1"))
+	// https://mvnrepository.com/artifact/io.opentelemetry.javaagent/opentelemetry-javaagent
+	implementation group: 'io.opentelemetry.javaagent', name: 'opentelemetry-javaagent', version: '1.2.0'
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
